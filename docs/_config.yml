@@ -23,7 +23,7 @@ email: v@atamanenko.in
 description: >- # this means to ignore newlines until "baseurl:"
   A copy of G-Gee (Gゲー) Japanese Android store metadata and images (for preservation purposes)
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://ggee.gl33ntwine.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: gl33ntwine
 github_username:  v-atamanenko
 
