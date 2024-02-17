@@ -1,0 +1,163 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: home
+---
+
+<style type="text/css">
+body {
+  background-color: #111;
+  color: #fdfdfd;
+}
+.wrapper {
+  max-width: 1440px;
+}
+.home {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.app {
+  display: flex;
+  flex-flow: column;
+  width: 48%;
+  padding: 1%;
+}
+.app-topbar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  background-color: #2d2d2d;
+}
+.app-title {
+  flex-grow: 1;
+  padding-left: 1rem;
+}
+.app-title h2 {
+  margin: 0;
+}
+.app-id {
+  font-family: monospace;
+  padding-right: 1rem;
+}
+.app-description-row {
+  display: flex;
+  flex-flow: row;
+  background-color: #31353e;
+  border-top: 4px solid #2d2d2d;
+  padding: 0.25rem 0.5rem;
+}
+.app-description-label {
+  width: 20%;
+  color: #c6c6c6fc;
+}
+.app-description-content {
+  width: 80%;
+}
+.screenshot {
+  max-width: 45%;
+}
+</style>
+
+<script type="text/javascript">
+function showhide(e, id) {
+    e.preventDefault();
+    ele = document.getElementById(id);
+    if (ele.style.display == "none") {
+        ele.style.display = "block";
+    } else {
+        ele.style.display = "none";
+    }
+}
+</script>
+
+{% for item in site.data.items %}
+<div class="app" id="{{ item.id }}">
+    <div class="app-topbar">
+        <div class="app-icon">
+            <img src="{{ item.icon_url }}">
+        </div>
+        <div class="app-title">
+            <h2>{{ item.title }}</h2>
+        </div>
+        <div class="app-id">
+            #{{ item.id }}
+        </div>
+    </div>
+    <div class="app-description-container">
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Category:
+            </div>
+            <div class="app-description-content">
+                {{ item.category }}
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Publisher:
+            </div>
+            <div class="app-description-content">
+                {{ item.publisher }}
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Price:
+            </div>
+            <div class="app-description-content">
+                {{ item.price }} JPY
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                First seen:
+            </div>
+            <div class="app-description-content">
+                {{ item.created_at }}
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Last changed:
+            </div>
+            <div class="app-description-content">
+                {{ item.updated_at }}
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Short description:
+            </div>
+            <div class="app-description-content">
+                {{ item.description_short }}
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Full description:
+            </div>
+            <div class="app-description-content">
+                <a href="" onclick="showhide(event, '{{item.id}}_0')">Show/Hide</a>
+                <div id="{{item.id}}_0" style="display:none">
+                    {{ item.description }}
+                </div>
+            </div>
+        </div>
+        <div class="app-description-row">
+            <div class="app-description-label">
+                Screenshots:
+            </div>
+            <div class="app-description-content">
+                <a href="" onclick="showhide(event, '{{item.id}}_1')">Show/Hide</a>
+                <div id="{{item.id}}_1" style="display:none">
+                    {% for scr in item.screenshots %}
+                        <img src="{{ scr }}" class="screenshot">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
